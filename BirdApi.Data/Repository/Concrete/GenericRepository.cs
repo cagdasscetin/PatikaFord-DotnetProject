@@ -1,5 +1,6 @@
 ﻿using Azure.Core;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace BirdApi.Data;
 
@@ -62,5 +63,10 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
     public void Update(TEntity entity)
     {
         _entities.Update(entity);
+    }
+
+    public List<TEntity> Where(Expression<Func<TEntity, bool>> where)
+    {
+        return _entities.Where(where).ToList();
     }
 }

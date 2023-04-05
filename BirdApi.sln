@@ -5,11 +5,13 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BirdApi.Web", "BirdApi\BirdApi.Web.csproj", "{37C9C736-7D49-441E-9934-222C327BF28D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirdApi.Data", "BirdApi.Data\BirdApi.Data.csproj", "{44ECA29B-B973-4FE8-985A-A15269F851D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BirdApi.Data", "BirdApi.Data\BirdApi.Data.csproj", "{44ECA29B-B973-4FE8-985A-A15269F851D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirdApi.Base", "BirdApi.Base\BirdApi.Base.csproj", "{C6228DD4-2197-4F11-ADE7-7812D8126183}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BirdApi.Base", "BirdApi.Base\BirdApi.Base.csproj", "{C6228DD4-2197-4F11-ADE7-7812D8126183}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirdApi.Dto", "BirdApi.Dto\BirdApi.Dto.csproj", "{9C1506DE-3F4D-4F87-8B30-474336F4E791}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BirdApi.Dto", "BirdApi.Dto\BirdApi.Dto.csproj", "{9C1506DE-3F4D-4F87-8B30-474336F4E791}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirdApi.Service", "BirdApi.Service\BirdApi.Service.csproj", "{ED253687-5A5F-4B99-8BC9-D9B01AB6E70A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{9C1506DE-3F4D-4F87-8B30-474336F4E791}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C1506DE-3F4D-4F87-8B30-474336F4E791}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C1506DE-3F4D-4F87-8B30-474336F4E791}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED253687-5A5F-4B99-8BC9-D9B01AB6E70A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED253687-5A5F-4B99-8BC9-D9B01AB6E70A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED253687-5A5F-4B99-8BC9-D9B01AB6E70A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED253687-5A5F-4B99-8BC9-D9B01AB6E70A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

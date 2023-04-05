@@ -18,6 +18,8 @@ public class Startup
         //inject - dependency injection
         services.AppDbContextDI(Configuration);
         services.AddServices();
+        services.AddMapperService();
+        services.AddBusinessService();
 
         services.AddControllers();
         services.AddSwaggerGen(c =>

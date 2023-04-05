@@ -1,6 +1,8 @@
-﻿using BirdApi.Data;
-using Microsoft.AspNetCore.Http;
+﻿using BirdApi.Dto;
+using BirdApi.Service.Abstract;
+using FordApi.Base;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace BirdApi.Web.Controllers;
 
@@ -8,46 +10,52 @@ namespace BirdApi.Web.Controllers;
 [ApiController]
 public class PersonController : ControllerBase
 {
-	private readonly IUnitOfWork _unitOfWork;
-	public PersonController(IUnitOfWork unitOfWork)
-	{
-		_unitOfWork = unitOfWork;
-	}
+    private readonly IPersonService service;
+    public PersonController(IPersonService service)
+    {
+        this.service = service;
+    }
 
-	[HttpGet("GetAll")]
-	public List<Person> GetAll()
-	{
-		List<Person> personList = _unitOfWork.PersonRepository.GetAll();
-		return personList;
-	}
 
-	[HttpGet("{id}")]
-	public Person GetById(int id)
-	{
-		Person person = _unitOfWork.PersonRepository.GetById(id);
-		return person;
-	}
+    [HttpGet("GetAll")]
+    public BaseResponse<List<PersonDto>> GetAll()
+    {
+        Log.Debug("PersonController.GetAll");
+        var response = service.GetAll();
+        return response;
+    }
 
-	[HttpPost]
-	public void Post([FromBody] Person request)
-	{
-		_unitOfWork.PersonRepository.Insert(request);
-		_unitOfWork.Complete();
-	}
+    [HttpGet("{id}")]
+    public BaseResponse<PersonDto> GetById(int id)
+    {
+        Log.Debug("PersonController.GetById");
+        var response = service.GetById(id);
+        return response;
+    }
 
-	[HttpPut("{id}")]
-	public void Put(int id, [FromBody] Person request)
-	{
-		request.Id = id;
-		_unitOfWork.PersonRepository.Update(request);
-		_unitOfWork.Complete();
-	}
+    [HttpPost]
+    public BaseResponse<bool> Post([FromBody] PersonDto request)
+    {
+        Log.Debug("PersonController.Post");
+        var response = service.Insert(request);
+        return response;
+    }
 
-	[HttpDelete("{id}")]
-	public void Delete(int id)
-	{
-		//Person person = _unitOfWork.PersonRepository.GetById(id);
-		_unitOfWork.PersonRepository.Remove(id);
-		_unitOfWork.Complete();
-	}
+    [HttpPut("{id}")]
+    public BaseResponse<bool> Put(int id, [FromBody] PersonDto request)
+    {
+        Log.Debug("PersonController.Put");
+        request.Id = id;
+        var response = service.Update(id, request);
+        return response;
+    }
+
+    [HttpDelete("{id}")]
+    public BaseResponse<bool> Delete(int id)
+    {
+        //Person person = this.service.PersonRepository.GetById(id);
+        Log.Debug("PersonController.Delete");
+        var response = service.Remove(id);
+        return response;
+    }
 }
