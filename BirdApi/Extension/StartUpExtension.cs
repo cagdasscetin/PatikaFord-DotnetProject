@@ -37,5 +37,8 @@ public static class StartUpExtension
         //services
         services.AddScoped<IPersonService, PersonService>();
         services.AddScoped<IAccountService, AccountService>();
+
+        //jwt
+        services.AddScoped<ITokenManagementService, TokenManagementService>();
     }
 }

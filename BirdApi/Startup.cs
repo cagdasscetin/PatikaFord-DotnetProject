@@ -1,3 +1,4 @@
+using BirdApi.Base;
 using BirdApi.Web.Extension;
 using Microsoft.OpenApi.Models;
 
@@ -11,15 +12,22 @@ public class Startup
     }
 
     public IConfiguration Configuration { get; }
+    public static JwtConfig JwtConfig { get; private set; }
 
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-        //inject - dependency injection
+        // jwt inject
+        JwtConfig = Configuration.GetSection("JwtConfig").Get<JwtConfig>();
+        services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
+
+        // inject - dependency injection **************
         services.AppDbContextDI(Configuration);
         services.AddServices();
         services.AddMapperService();
         services.AddBusinessService();
+        services.AddJwtAuthentication(); //incoming token validation
+        // end of dependency injection ****************
 
         services.AddControllers();
         services.AddSwaggerGen(c =>
@@ -40,8 +48,9 @@ public class Startup
 
         app.UseHttpsRedirection();
 
+        // jwt
+        app.UseAuthentication();
         app.UseRouting();
-
         app.UseAuthorization();
 
         app.UseEndpoints(endpoints =>
