@@ -2,7 +2,7 @@
 using BirdApi.Data;
 using BirdApi.Dto;
 using BirdApi.Service.Abstract;
-using FordApi.Base;
+using BirdApi.Base;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;

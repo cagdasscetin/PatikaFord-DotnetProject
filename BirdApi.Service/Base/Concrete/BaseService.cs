@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BirdApi.Data;
-using FordApi.Base;
+using BirdApi.Base;
 using Serilog;
 
 namespace BirdApi.Service.Base;

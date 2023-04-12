@@ -1,6 +1,6 @@
 ﻿using BirdApi.Dto;
 using BirdApi.Service.Abstract;
-using FordApi.Base;
+using BirdApi.Base;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BirdApi.Web;

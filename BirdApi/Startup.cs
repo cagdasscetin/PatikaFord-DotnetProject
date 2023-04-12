@@ -1,5 +1,6 @@
 using BirdApi.Base;
 using BirdApi.Web.Extension;
+using BirdApi.Web.Middleware;
 using Microsoft.OpenApi.Models;
 
 namespace BirdApi;
@@ -27,13 +28,14 @@ public class Startup
         services.AddMapperService();
         services.AddBusinessService();
         services.AddJwtAuthentication(); //incoming token validation
+        services.AddCustomSwagger();
         // end of dependency injection ****************
 
         services.AddControllers();
-        services.AddSwaggerGen(c =>
-        {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "BirdApi", Version = "v1" });
-        });
+        //services.AddSwaggerGen(c =>
+        //{
+        //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "BirdApi", Version = "v1" });
+        //});
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +49,11 @@ public class Startup
         }
 
         app.UseHttpsRedirection();
+
+        // middleware
+        app.UseMiddleware<HeartbeatMiddleware>();
+        app.UseMiddleware<ErrorHandlerMiddleware>();
+        app.UseMiddleware<RequestLoggingMiddleware>();
 
         // jwt
         app.UseAuthentication();

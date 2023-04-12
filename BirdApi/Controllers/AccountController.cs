@@ -1,8 +1,10 @@
 ﻿using BirdApi.Dto;
 using BirdApi.Service.Abstract;
-using FordApi.Base;
+using BirdApi.Base;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
+using System.Security.Claims;
 
 namespace BirdApi.Web.Controllers;
 
@@ -18,6 +20,7 @@ public class AccountController : ControllerBase
 
 
     [HttpGet("GetAll")]
+    [Authorize]
     public BaseResponse<List<AccountDto>> GetAll()
     {
         Log.Debug("AccountController.GetAll");
@@ -26,14 +29,26 @@ public class AccountController : ControllerBase
     }
 
     [HttpGet("/GetByUsername/{username}")]
+    [Authorize]
     public BaseResponse<AccountDto> GetByUsername([FromRoute] string username)
     {
         Log.Debug("AccountController.GetByUsername");
         var response = service.GetByUsername(username);
         return response;
     }
+
+    [HttpGet("GetUserDetail")]
+    [Authorize]
+    public BaseResponse<AccountDto> GetUserDetail()
+    {
+        Log.Debug("AccountController.GetUserDetail");
+        var id = (User.Identity as ClaimsIdentity).FindFirst("AccountId").Value;
+        var response = service.GetById(int.Parse(id));
+        return response;
+    }
     
     [HttpGet("/GetById/{id}")]
+    [Authorize]
     public BaseResponse<AccountDto> GetById(int id)
     {
         Log.Debug("AccountController.GetById");
@@ -50,6 +65,7 @@ public class AccountController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize]
     public BaseResponse<bool> Put(int id, [FromBody] AccountDto request)
     {
         Log.Debug("AccountController.Put");
@@ -59,6 +75,7 @@ public class AccountController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize]
     public BaseResponse<bool> Delete(int id)
     {
         //Account Account = this.service.AccountRepository.GetById(id);

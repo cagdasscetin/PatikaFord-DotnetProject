@@ -11,7 +11,9 @@ public class MappingProfile : Profile
         CreateMap<Person, PersonDto>();
         CreateMap<PersonDto, Person>();
 
-        CreateMap<Account, AccountDto>();
-        CreateMap<AccountDto, Account>();
+        //CreateMap<Account, AccountDto>();
+        //CreateMap<AccountDto, Account>();
+
+        CreateMap<Account, AccountDto>().ReverseMap();
     }
 }

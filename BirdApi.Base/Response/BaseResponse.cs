@@ -1,4 +1,4 @@
-﻿namespace FordApi.Base;
+﻿namespace BirdApi.Base;
 
 public class BaseResponse<T>
 {

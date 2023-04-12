@@ -1,7 +1,7 @@
 ﻿using BirdApi.Data;
 using BirdApi.Dto;
 using BirdApi.Service.Base;
-using FordApi.Base;
+using BirdApi.Base;
 
 namespace BirdApi.Service.Abstract;
 
